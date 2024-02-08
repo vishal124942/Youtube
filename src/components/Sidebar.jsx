@@ -5,7 +5,7 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   if (isMenuOpen) {
     return (
-      <div className="p-6 cursor-pointer  w-56 h-screen overflow-y-auto space-y-3">
+      <div className="p-6 cursor-pointer  bg-white w-48 h-screen overflow-y-auto space-y-3">
         <ul className="space-y-4 text-md">
           <Link to={"/"}>
             <li>Home</li>

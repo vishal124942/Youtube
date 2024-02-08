@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
-import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const handleMenuClick = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className=" grid grid-flow-col p-2 m-2 sticky top-0 z-1000 bg-white">
+    <div className=" grid grid-flow-col p-2 m-2 sticky z-1000 top-0 z-1000 bg-white">
       <div className="flex col-span-1">
         <img
           onClick={handleMenuClick}

@@ -3,32 +3,38 @@ import { YOUTUBE_API_KEY } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "../utils/appSlice";
-
+import { AddVideos } from "../utils/videosSlice";
 const VideoContainer = () => {
   const dispatch = useDispatch();
-  const collapse = () => {
-    dispatch(toggleMenu());
-  };
-
   const [videos, setvideos] = useState([]);
   useEffect(() => {
     getVideos();
   }, []);
   const getVideos = async () => {
-    await fetch(YOUTUBE_API_KEY)
-      .then((response) => response.json())
-      .then((data) => setvideos(data?.items))
-      .catch((error) => console.log(error));
+    try {
+      const response = await fetch(YOUTUBE_API_KEY);
+      if (!response.ok) {
+        throw new Error("Cannot Fetch data");
+      }
+      const data = await response.json();
+      console.log(data);
+      setvideos(data?.items || []);
+      dispatch(AddVideos(data?.items || []));
+    } catch (error) {
+      console.log("Error: ", error.message);
+    }
   };
-  if (videos.length === 0) return null;
+
   return (
     <div className="flex flex-wrap">
-      {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id} onClick={collapse}>
-          <VideoCard key={video.id} info={video} />
-        </Link>
-      ))}
+      {videos.length > 0 &&
+        videos.map((video) => (
+          <Link
+            to={`/watch?v=${video.id}&id=${video?.snippet?.channelId}&likes=${video?.statistics?.likeCount}&title=${video?.snippet?.title}&views=${video?.statistics?.viewCount}&publishedAt=${video?.snippet?.publishedAt}&comment=${video?.statistics?.commentCount}`}
+          >
+            <VideoCard key={video.id} info={video} />
+          </Link>
+        ))}
     </div>
   );
 };

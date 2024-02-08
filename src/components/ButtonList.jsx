@@ -5,7 +5,7 @@ const ButtonList = () => {
   return (
     <div className="ButtonList flex h-10 gap-x-4 w-full overflow-x-auto whitespace-nowrap ">
       {list.map((name) => (
-        <Button name={name} />
+        <Button key={name} name={name} />
       ))}
     </div>
   );
