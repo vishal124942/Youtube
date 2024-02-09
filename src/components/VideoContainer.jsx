@@ -17,7 +17,6 @@ const VideoContainer = () => {
         throw new Error("Cannot Fetch data");
       }
       const data = await response.json();
-      console.log(data);
       setvideos(data?.items || []);
       dispatch(AddVideos(data?.items || []));
     } catch (error) {

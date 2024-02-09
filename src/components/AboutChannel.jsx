@@ -6,7 +6,7 @@ import LIKE from "../img/like.png";
 import DISLIKE from "../img/dislike.png";
 const AboutChannel = ({ logo, likes, views, time, title }) => {
   return (
-    <div className="py-4  space-y-3">
+    <div className=" about py-4  space-y-3">
       <h1 className="font-bold text-xl p-1 w-[70%] whitespace-pre-line">
         {title}
       </h1>

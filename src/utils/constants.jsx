@@ -33,3 +33,5 @@ export const COMMENTS_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=";
 export const MAX_RESULTS = "&maxResults=100&key=";
 
+export const SEARCH_API =
+  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
