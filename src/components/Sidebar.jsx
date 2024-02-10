@@ -11,7 +11,7 @@ const Sidebar = () => {
           darkMode
             ? "dark:bg-gray-800 text-white shadow-2xl  border-r-2  border-white"
             : ""
-        } p-6 cursor-pointer  bg-white w-48 h-screen overflow-y-auto  space-y-3`}
+        } p-6 cursor-pointer  bg-white w-48 h-screen overflow-y-auto hidden sm:block space-y-3`}
       >
         <ul className="space-y-4 text-md">
           <Link to={"/"}>

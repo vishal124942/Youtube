@@ -27,7 +27,7 @@ const VideoContainer = () => {
 
   return (
     <div
-      className={`flex flex-wrap ${
+      className={`video flex  flex-row flex-wrap ${
         darkMode ? "dark:bg-gray-800 text-white" : ""
       }`}
     >

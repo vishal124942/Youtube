@@ -80,21 +80,21 @@ const Header = () => {
           darkMode ? "dark:bg-gray-800" : ""
         }`}
       >
-        <div className="flex ">
+        <div className="flex header ">
           <img
             onClick={handleMenuClick}
-            className="h-10 cursor-pointer rounded-full "
+            className="h-10 cursor-pointer rounded-full  hidden sm:block "
             src="https://static.vecteezy.com/system/resources/thumbnails/021/190/402/small_2x/hamburger-menu-filled-icon-in-transparent-background-basic-app-and-web-ui-bold-line-icon-eps10-free-vector.jpg"
             alt=""
           />
 
           <img
-            className="h-10 cursor-pointer "
+            className="h-10 cursor-pointer w-full sm:w-auto max-w-24"
             src="https://www.gstatic.com/youtube/img/promos/growth/e6cb4b33d9b818dc663e0774bf2e4f8c4366978032a880a4bc88eeaa79f4eb8c_244x112.webp"
             alt=""
           />
         </div>
-        <div className="col-span-10 flex justify-center">
+        <div className="col-span-10  justify-center lg:flex hidden sm:block">
           {!searchQuery ? (
             <input
               type="text"
@@ -156,7 +156,7 @@ const Header = () => {
             />
           </svg>
         </div>
-        <div className="text-white  flex items-center space-x-2 col-span-1">
+        <div className="buttons text-white  flex items-center space-x-2 col-span-1 ml-auto">
           <div onClick={() => dispatch(toggleDarkMode())}>
             <img
               className="bg-white rounded-full h-8 cursor-pointer"

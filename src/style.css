@@ -23,3 +23,27 @@
   pointer-events: none;
 }
 
+@media screen and (min-width: 360px) and (max-width: 700px) {
+  .video-info {
+    width: 100%;
+  }
+  .video {
+    width: screen;
+    flex-direction: column;
+  }
+  .ButtonList {
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ButtonList {
+    padding-left: 10px;
+  }
+  .maincontainer {
+    width: screen;
+  }
+  .image {
+    width: 100%;
+  }
+}

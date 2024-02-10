@@ -11,7 +11,7 @@ const PlayVideo = ({ info }) => {
     <div
       className={`${
         darkMode ? "dark:bg-slate-800 flex items-center py-1 " : ""
-      }flex bg-white items-center space-x-2 py-1`}
+      }flex bg-white items-center space-x-2 py-1 `}
     >
       <img
         className="rounded-xl  w-40 h-24 "
