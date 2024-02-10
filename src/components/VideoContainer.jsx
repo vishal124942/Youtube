@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_API_KEY } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddVideos } from "../utils/videosSlice";
 const VideoContainer = () => {
+  const darkMode = useSelector((store) => store.DarkMode.darkMode);
   const dispatch = useDispatch();
   const [videos, setvideos] = useState([]);
   useEffect(() => {
@@ -25,7 +26,11 @@ const VideoContainer = () => {
   };
 
   return (
-    <div className="flex flex-wrap">
+    <div
+      className={`flex flex-wrap ${
+        darkMode ? "dark:bg-gray-800 text-white" : ""
+      }`}
+    >
       {videos.length > 0 &&
         videos.map((video) => (
           <Link

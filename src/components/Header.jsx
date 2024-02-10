@@ -8,8 +8,11 @@ import {
 } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 import { AddSuggVideos } from "../utils/suggestedVideosSlice";
-
+import SLEEP from "../img/sleep-mode.png";
+import DARK from "../img/dark-mode.png";
+import { toggleDarkMode } from "../utils/DarkModeSlice";
 const Header = () => {
+  const darkMode = useSelector((store) => store.DarkMode.darkMode);
   const SearchCache = useSelector((store) => store.search);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setsuggestions] = useState([]);
@@ -69,12 +72,18 @@ const Header = () => {
     setisSearching(false);
   };
   return (
-    <div className="header flex flex-col ">
-      <div className=" grid grid-flow-col p-2 m-2 sticky z-1000 top-0 z-1000 bg-white">
+    <div
+      className={`header flex flex-col ${darkMode ? "dark:bg-gray-800" : ""} `}
+    >
+      <div
+        className={` grid grid-flow-col p-2 m-2 sticky z-1000 top-0 z-1000 bg-white${
+          darkMode ? "dark:bg-gray-800" : ""
+        }`}
+      >
         <div className="flex ">
           <img
             onClick={handleMenuClick}
-            className="h-10 cursor-pointer "
+            className="h-10 cursor-pointer rounded-full "
             src="https://static.vecteezy.com/system/resources/thumbnails/021/190/402/small_2x/hamburger-menu-filled-icon-in-transparent-background-basic-app-and-web-ui-bold-line-icon-eps10-free-vector.jpg"
             alt=""
           />
@@ -147,9 +156,17 @@ const Header = () => {
             />
           </svg>
         </div>
-        <div className="col-span-1">
+        <div className="text-white  flex items-center space-x-2 col-span-1">
+          <div onClick={() => dispatch(toggleDarkMode())}>
+            <img
+              className="bg-white rounded-full h-8 cursor-pointer"
+              src={darkMode ? SLEEP : DARK}
+              alt=""
+            />
+          </div>
+
           <img
-            className="h-8"
+            className="h-8 rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCzxivJXCZk0Kk8HsHujTO3Olx0ngytPrWw&usqp=CAU"
             alt=""
           />

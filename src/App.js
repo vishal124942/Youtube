@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchedVideos from "./components/SearchedVideos";
+import { useSelector } from "react-redux";
 
 export const appRouter = createBrowserRouter([
   {
@@ -28,8 +29,9 @@ export const appRouter = createBrowserRouter([
   },
 ]);
 function App() {
+  const darkMode = useSelector((store) => store.DarkMode.darkMode);
   return (
-    <div className="App relative">
+    <div className={`App ${darkMode ? "dark" : ""}`}>
       <Header />
       <RouterProvider router={appRouter} />
     </div>

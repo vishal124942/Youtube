@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { closeMenu } from "../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { COMMENTS_API, GOOGLE_API_KEY, MAX_RESULTS } from "../utils/constants";
 import { CHANNEL_API } from "../utils/constants";
@@ -9,6 +9,7 @@ import AboutChannel from "./AboutChannel";
 import { calculate } from "../utils/ImpFunctions";
 import Playlist from "./Playlist";
 const WatchPage = () => {
+  const darkMode = useSelector((store) => store.DarkMode.darkMode);
   const [searchParams] = useSearchParams();
   const [comment, setComment] = useState([]);
   const [logo, setLogo] = useState("");
@@ -48,7 +49,11 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="watchpage relative flex w-screen  overflow-x-hidden whitespace-nowrap  ">
+    <div
+      className={`watchpage relative flex w-screen  overflow-x-hidden whitespace-nowrap ${
+        darkMode ? "dark:bg-gray-800 text-white shadow-2xl" : ""
+      } `}
+    >
       <div className="px-20   h-screen overflow-x-hidden whitespace-nowrap">
         <iframe
           className="rounded-xl overflow-x-hidden whitespace-nowrap"

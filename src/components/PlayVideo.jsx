@@ -1,12 +1,18 @@
 import React from "react";
 import { calculate, date } from "../utils/ImpFunctions";
+import { useSelector } from "react-redux";
 
 const PlayVideo = ({ info }) => {
+  const darkMode = useSelector((store) => store.DarkMode.darkMode);
   const { snippet, statistics } = info;
   const { title, channelTitle, thumbnails, publishedAt } = snippet;
 
   return (
-    <div className="flex  items-center space-x-2">
+    <div
+      className={`${
+        darkMode ? "dark:bg-slate-800 flex items-center py-1 " : ""
+      }flex bg-white items-center space-x-2 py-1`}
+    >
       <img
         className="rounded-xl  w-40 h-24 "
         src={thumbnails.medium.url}
