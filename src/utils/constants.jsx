@@ -35,3 +35,5 @@ export const MAX_RESULTS = "&maxResults=100&key=";
 
 export const SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+export const SUGGESTED_VIDEOS_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";

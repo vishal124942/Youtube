@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
-import { SEARCH_API } from "../utils/constants";
+import {
+  GOOGLE_API_KEY,
+  SEARCH_API,
+  SUGGESTED_VIDEOS_API,
+} from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import { AddSuggVideos } from "../utils/suggestedVideosSlice";
+
 const Header = () => {
   const SearchCache = useSelector((store) => store.search);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setsuggestions] = useState([]);
   const [showSuggestions, setshowSuggestions] = useState(false);
+  const [isSearching, setisSearching] = useState(true);
   const dispatch = useDispatch();
   const handleMenuClick = () => {
     dispatch(toggleMenu());
@@ -37,33 +44,88 @@ const Header = () => {
       })
       .catch((e) => console.log(e));
   };
+  const getSuggestedVideos = async (keyword) => {
+    setisSearching(true);
+    try {
+      const data = await fetch(
+        SUGGESTED_VIDEOS_API + keyword + "&key=" + GOOGLE_API_KEY
+      );
+      const json = await data.json();
+      console.log(json?.items);
+      dispatch(AddSuggVideos(json?.items || []));
+    } catch (error) {
+      console.log(error);
+      setisSearching(false);
+    }
+  };
+  const handleSuggestionClick = (keyword) => {
+    setSearchQuery(keyword);
+    setshowSuggestions(false);
+    getSuggestedVideos(keyword);
+  };
+
+  const handleSearchButtonClick = () => {
+    handleSuggestionClick(searchQuery);
+    setisSearching(false);
+  };
   return (
-    <div className="flex flex-col ">
+    <div className="header flex flex-col ">
       <div className=" grid grid-flow-col p-2 m-2 sticky z-1000 top-0 z-1000 bg-white">
-        <div className="flex col-span-1">
+        <div className="flex ">
           <img
             onClick={handleMenuClick}
-            className="h-10 cursor-pointer"
+            className="h-10 cursor-pointer "
             src="https://static.vecteezy.com/system/resources/thumbnails/021/190/402/small_2x/hamburger-menu-filled-icon-in-transparent-background-basic-app-and-web-ui-bold-line-icon-eps10-free-vector.jpg"
             alt=""
           />
 
           <img
-            className="h-10 cursor-pointer"
+            className="h-10 cursor-pointer "
             src="https://www.gstatic.com/youtube/img/promos/growth/e6cb4b33d9b818dc663e0774bf2e4f8c4366978032a880a4bc88eeaa79f4eb8c_244x112.webp"
             alt=""
           />
         </div>
         <div className="col-span-10 flex justify-center">
-          <input
-            type="text"
-            className="w-1/2 border border-gray-400 p-2 rounded-l-full "
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setshowSuggestions(true)}
-            onBlur={() => setshowSuggestions(false)}
-          />
+          {!searchQuery ? (
+            <input
+              type="text"
+              className="w-1/2 border border-gray-400 p-2 rounded-l-full "
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setshowSuggestions(true)}
+              onBlur={() => setshowSuggestions(false)}
+            />
+          ) : (
+            <>
+              <input
+                type="text"
+                className="w-1/2 border border-gray-400 p-2 rounded-l-full "
+                placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setshowSuggestions(true)}
+                onBlur={() => setshowSuggestions(false)}
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8 absolute translate-x-52 translate-y-2 cursor-pointer"
+                onClick={() => {
+                  setSearchQuery("");
+                }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </>
+          )}
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +133,12 @@ const Header = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className=" w-16 h-11 border border-gray-400 p-2 rounded-r-full bg-gray-100"
+            className={` w-16 h-11 border cursor-pointer border-gray-400 p-2 rounded-r-full bg-gray-100 ${
+              !isSearching ? "disabled" : ""
+            }`}
+            onClick={() => {
+              handleSearchButtonClick();
+            }}
           >
             <path
               strokeLinecap="round"
@@ -91,7 +158,12 @@ const Header = () => {
       <div className=" suggestion   shadow-2xl rounded-xl bg-white translate-x-[470px] w-[37%] space-y-2  translate-y-16">
         {showSuggestions &&
           suggestions.map((suggestion) => (
-            <div className="flex items-center space-x-2 px-4 h-8 cursor-pointer hover:bg-gray-100">
+            <div
+              onClick={() => {
+                handleSuggestionClick(suggestion);
+              }}
+              className="flex items-center space-x-2 px-4 h-8 cursor-pointer hover:bg-gray-100"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

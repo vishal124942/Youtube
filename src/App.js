@@ -5,7 +5,9 @@ import "../src/style.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
-const appRouter = createBrowserRouter([
+import SearchedVideos from "./components/SearchedVideos";
+
+export const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <Body />,
@@ -17,6 +19,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/watch",
         element: <WatchPage />,
+      },
+      {
+        path: "/:keyword",
+        element: <SearchedVideos />,
       },
     ],
   },

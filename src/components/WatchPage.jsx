@@ -48,10 +48,10 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="watchpage flex w-screen relative ">
-      <div className="px-20  h-screen overflow-y-auto whitespace-nowrap">
+    <div className="watchpage relative flex w-screen  overflow-x-hidden whitespace-nowrap  ">
+      <div className="px-20   h-screen overflow-x-hidden whitespace-nowrap">
         <iframe
-          className="rounded-xl"
+          className="rounded-xl overflow-x-hidden whitespace-nowrap"
           width="850"
           height="500"
           src={"https://www.youtube.com/embed/" + searchParams.get("v")}
