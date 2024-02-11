@@ -8,7 +8,18 @@ import Comments from "./Comments";
 import AboutChannel from "./AboutChannel";
 import { calculate } from "../utils/ImpFunctions";
 import Playlist from "./Playlist";
+import VideoContainer from "./VideoContainer";
 const WatchPage = () => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 600);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const darkMode = useSelector((store) => store.DarkMode.darkMode);
   const [searchParams] = useSearchParams();
   const [comment, setComment] = useState([]);
@@ -54,9 +65,9 @@ const WatchPage = () => {
         darkMode ? "dark:bg-gray-800 text-white shadow-2xl" : ""
       } `}
     >
-      <div className="px-20   h-screen overflow-x-hidden whitespace-nowrap">
+      <div className="px-20 watchpage-div h-screen overflow-x-hidden whitespace-nowrap">
         <iframe
-          className="rounded-xl overflow-x-hidden whitespace-nowrap"
+          className=" watchpage-video rounded-xl overflow-x-hidden whitespace-nowrap"
           width="850"
           height="500"
           src={"https://www.youtube.com/embed/" + searchParams.get("v")}
@@ -83,7 +94,12 @@ const WatchPage = () => {
             ))}
         </div>
       </div>
-
+      {isSmallScreen && (
+        <div className="flex-flex-col ">
+          <h1 className="font-bold text-xl px-4">Playlist</h1>
+          <VideoContainer />
+        </div>
+      )}
       <Playlist />
     </div>
   );

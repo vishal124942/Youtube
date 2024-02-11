@@ -27,13 +27,14 @@ const VideoContainer = () => {
 
   return (
     <div
-      className={`video flex  flex-row flex-wrap ${
+      className={`video flex flex-wrap  ${
         darkMode ? "dark:bg-gray-800 text-white" : ""
       }`}
     >
       {videos.length > 0 &&
         videos.map((video) => (
           <Link
+            className="no-underline"
             to={`/watch?v=${video.id}&id=${video?.snippet?.channelId}&likes=${video?.statistics?.likeCount}&title=${video?.snippet?.title}&views=${video?.statistics?.viewCount}&publishedAt=${video?.snippet?.publishedAt}&comment=${video?.statistics?.commentCount}`}
           >
             <VideoCard key={video.id} info={video} />

@@ -2,7 +2,7 @@ import React from "react";
 import { date } from "../utils/ImpFunctions";
 const Comments = ({ comment }) => {
   return (
-    <div className=" comment flex items-center space-x-5 py-4 ">
+    <div className="comment flex items-center space-x-5 py-4 ">
       <img
         className="rounded-full h-10 w-10"
         src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}

@@ -10,7 +10,7 @@ const Playlist = () => {
     <div
       className={`${
         darkMode ? "dark:bg-slate-800 text-white " : ""
-      }flex mr-20 bg-white fixed flex-col  w-[33%]space-y-2 translate-x-[950px]  overflow-x-hidden overflow-y-auto h-screen whitespace-nowrap`}
+      }flex mr-20 playlist bg-white fixed flex-col  w-[33%]space-y-2 translate-x-[950px]  overflow-x-hidden overflow-y-auto h-screen whitespace-nowrap`}
     >
       {Videos.map((video) => (
         <Link

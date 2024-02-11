@@ -40,10 +40,52 @@
   .ButtonList {
     padding-left: 10px;
   }
-  .maincontainer {
-    width: screen;
-  }
+
   .image {
     width: 100%;
   }
+  .comment {
+    display: none;
+  }
+  .watchpage {
+    width: screen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .watchpage-div {
+    width: auto;
+    height: auto;
+  }
+  .watchpage-video {
+    width: full;
+    border: 4px solid black;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about {
+    display: flex;
+    transform: scale(0.6);
+    /* transform: translateX(10px); */
+    flex-direction: column;
+    transition: all;
+    align-items: center;
+    justify-items: center;
+  }
+  .abouttitle {
+    text-align: center;
+  }
+  .share {
+    display: none;
+  }
+  .download {
+    display: none;
+  }
+  .playlist {
+    display: none;
+  }
+}
+.no-underline {
+  margin: 0;
+  padding: 0;
 }
