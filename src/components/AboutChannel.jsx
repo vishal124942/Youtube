@@ -20,7 +20,7 @@ const AboutChannel = ({ logo, likes, views, time, title }) => {
       <h1 className=" abouttitle font-bold text-xl p-1 w-[70%] whitespace-pre-line">
         {title}
       </h1>
-      <div className="flex gap-x-40  aboutstats">
+      <div className="flex gap-x-40 aboutstats">
         <div className="flex space-x-2 ">
           <img
             className="w-11 h-11 rounded-full"
@@ -28,7 +28,7 @@ const AboutChannel = ({ logo, likes, views, time, title }) => {
             alt="Channel logo"
           />
           <div>
-            <h1 className="font-bold text-lg  ">{logo?.snippet?.title}</h1>
+            <h1 className="font-bold  text-lg  ">{logo?.snippet?.title}</h1>
             <p
               className={`${
                 darkMode
