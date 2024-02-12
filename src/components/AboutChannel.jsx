@@ -21,7 +21,7 @@ const AboutChannel = ({ logo, likes, views, time, title }) => {
         {title}
       </h1>
       <div className="flex gap-x-40  aboutstats">
-        <div className="flex space-x-2 ml-auto">
+        <div className="flex space-x-2 ">
           <img
             className="w-11 h-11 rounded-full"
             src={logo?.snippet?.thumbnails?.default?.url}
@@ -40,7 +40,7 @@ const AboutChannel = ({ logo, likes, views, time, title }) => {
             </p>
           </div>
         </div>
-        <div className=" statschannel flex items-center space-x-3 mr-auto pr-auto">
+        <div className=" statschannel flex items-center space-x-3 ">
           <div
             onClick={() => navigate("/")}
             className={`${
@@ -108,7 +108,7 @@ const AboutChannel = ({ logo, likes, views, time, title }) => {
           darkMode
             ? "dark:bg-gray-800 text-white shadow-xl border-2 border-white"
             : ""
-        } hidden sm:block rounded-xl p-3 w-[850px] overflow-y-hidden mx-auto px-auto bg-gray-200 whitespace-pre-line text-sm`}
+        } hidden sm:block rounded-xl p-3 w-[850px] overflow-y-hidden  bg-gray-200 whitespace-pre-line text-sm`}
       >
         <div className="flex space-x-2">
           <h1 className="font-bold">{calculate(views)} views</h1>

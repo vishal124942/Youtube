@@ -22,15 +22,7 @@
   opacity: 0.5;
   pointer-events: none;
 }
-@media screen and (min-width: 700px) and (max-width: 1600px) {
-  .about {
-    transform: translateX(-220px);
-  }
-  .abouttitle {
-    text-align: center;
-    transform: translateX(-10px);
-  }
-}
+
 @media screen and (min-width: 360px) and (max-width: 700px) {
   .video-info {
     width: 100%;
@@ -74,7 +66,7 @@
   .about {
     display: flex;
     transform: scale(0.6);
-    /* transform: translateX(10px); */
+    transform: translateX(10px);
     flex-direction: column;
     transition: all;
     align-items: center;
@@ -92,8 +84,4 @@
   .playlist {
     display: none;
   }
-}
-.no-underline {
-  margin: 0;
-  padding: 0;
 }
